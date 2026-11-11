@@ -143,17 +143,37 @@
         <input type="email" name="email" placeholder="Tu correo" autocomplete="email" required>
       </div>
       <div class="form-row">
-        <select name="tipo" required>
-          <option value="" disabled selected>¿Qué necesitas?</option>
-          <option value="web">Desarrollo web</option>
-          <option value="ia">Solución con IA</option>
-          <option value="proyecto">Proyecto personalizado</option>
-          <option value="barberia">Barbería Legnar</option>
-          <option value="otro">Otra cosa</option>
-        </select>
         <input type="tel" name="telefono" placeholder="Teléfono (opcional)" autocomplete="tel">
+        <select name="solicitud" aria-label="Tipo de solicitud" required>
+          <option value="" disabled selected>¿En qué puedo ayudarte?</option>
+          <option value="informacion">Quiero más información</option>
+          <option value="pregunta">Tengo una pregunta</option>
+          <option value="cotizacion">Quiero una cotización</option>
+          <option value="compra">Quiero comprar o contratar un proyecto</option>
+          <option value="opinion">Quiero dejar una opinión</option>
+          <option value="otro">Otra solicitud</option>
+        </select>
       </div>
-      <textarea name="mensaje" rows="5" placeholder="Cuéntame sobre tu proyecto..." required></textarea>
+      <div class="form-row">
+        <select name="proyecto" aria-label="Proyecto de interés">
+          <option value="" selected>¿Qué proyecto te interesa? (opcional)</option>
+          <option value="ARCS IA">ARCS IA</option>
+          <option value="Barbería Legnar">Barbería Legnar</option>
+          <option value="PYCLEG">PYCLEG</option>
+          <option value="LPP">LPP / Desarrollo web</option>
+          <option value="personalizado">Un proyecto personalizado</option>
+          <option value="no-se">Todavía no lo sé</option>
+        </select>
+        <select name="calificacion" aria-label="Calificación de la página">
+          <option value="" selected>Califica esta página (opcional)</option>
+          <option value="5">5 — Excelente</option>
+          <option value="4">4 — Muy buena</option>
+          <option value="3">3 — Buena</option>
+          <option value="2">2 — Puede mejorar</option>
+          <option value="1">1 — Necesita mejoras</option>
+        </select>
+      </div>
+      <textarea name="mensaje" rows="5" placeholder="Escribe tu pregunta, opinión o los detalles del proyecto que te interesa..." required></textarea>
       <button type="submit" class="btn btn-primary">Enviar mensaje</button>
       <p class="form-note" id="formNote" aria-live="polite"></p>
     </form>
