@@ -227,3 +227,68 @@ if (projectSearch && projectResults) {
     }, 140);
   });
 }
+
+
+// Buscador del catálogo LPP: filtra proyectos por nombre, área o palabras clave.
+const projectSearch = document.getElementById("projectSearch");
+const projectResults = document.getElementById("projectResults");
+
+if (projectSearch && projectResults) {
+  const projects = [
+    { title: "ARCS IA", description: "Investigación y desarrollo de inteligencia artificial local.", url: "proyectos/arcs-ia.html", tags: ["ia", "inteligencia artificial", "python", "conversacional", "investigación", "desarrollo"] },
+    { title: "PYCLEG", description: "Herramientas, utilidades y experimentación de software.", url: "proyectos/pycleg.html", tags: ["software", "javascript", "python", "herramientas", "web", "programación"] },
+    { title: "Barbería Legnar", description: "Iniciativa comercial y presencia digital de barbería.", url: "proyectos/barberia-legnar.html", tags: ["barbería", "negocio", "servicios", "corte", "comercial"] }
+  ];
+
+  const render = (matches) => {
+    if (!matches.length) {
+      projectResults.innerHTML = '<p class="search-empty">No encontramos proyectos relacionados con esa búsqueda.</p>';
+      return;
+    }
+    projectResults.innerHTML = matches.map((project) =>
+      '<a class="search-result" href="' + project.url + '">' +
+        '<span class="search-result-title">' + project.title + '</span>' +
+        '<span class="search-result-description">' + project.description + '</span>' +
+        '<span class="search-result-open">Ver información <span aria-hidden="true">→</span></span>' +
+      '</a>'
+    ).join("");
+  };
+
+  const findMatches = (query) => {
+    const q = query.trim().toLocaleLowerCase("es");
+    if (!q) return projects;
+    return projects.filter((project) =>
+      project.title.toLocaleLowerCase("es").includes(q) ||
+      project.description.toLocaleLowerCase("es").includes(q) ||
+      project.tags.some((tag) => tag.includes(q))
+    );
+  };
+
+  projectSearch.addEventListener("input", () => {
+    const query = projectSearch.value;
+    if (!query.trim()) {
+      projectResults.innerHTML = '<p class="search-hint">Escribe para buscar o explora todos los proyectos.</p>';
+    } else {
+      render(findMatches(query));
+    }
+  });
+
+  projectSearch.addEventListener("keydown", (event) => {
+    if (event.key === "Enter") {
+      const first = projectResults.querySelector(".search-result");
+      if (first) window.location.href = first.href;
+    }
+  });
+
+  projectSearch.addEventListener("focus", () => {
+    if (!projectSearch.value.trim()) render(projects);
+  });
+
+  projectSearch.addEventListener("blur", () => {
+    window.setTimeout(() => {
+      if (!projectSearch.value.trim()) {
+        projectResults.innerHTML = '<p class="search-hint">Escribe para buscar o explora todos los proyectos.</p>';
+      }
+    }, 140);
+  });
+}
