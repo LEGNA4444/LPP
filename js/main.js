@@ -157,88 +157,31 @@ if (form && formNote) {
     }
   });
 }
-
 // ============================================================
 // BUSCADOR DEL CATÁLOGO LPP
-// Adaptación del filtrado de proyectos de PYCLEG.
-// Los resultados llevan a páginas informativas dentro de LPP.
-// ============================================================
+// Filtra por nombre, descripción y etiquetas; ignora mayúsculas y acentos.
 const projectSearch = document.getElementById("projectSearch");
 const projectResults = document.getElementById("projectResults");
 
 if (projectSearch && projectResults) {
   const projects = [
-    { title: "ARCS IA", description: "Investigación y desarrollo de inteligencia artificial local.", url: "proyectos/arcs-ia.html", tags: ["ia", "inteligencia artificial", "python", "conversacional", "investigación", "desarrollo"] },
-    { title: "PYCLEG", description: "Herramientas, utilidades y experimentación de software.", url: "proyectos/pycleg.html", tags: ["software", "javascript", "python", "herramientas", "web", "programación"] },
-    { title: "Barbería Legnar", description: "Iniciativa comercial y presencia digital de barbería.", url: "proyectos/barberia-legnar.html", tags: ["barbería", "negocio", "servicios", "corte", "comercial"] }
+    { title: "ARCS IA", description: "Investigación y desarrollo de inteligencia artificial local.", url: "proyectos/arcs-ia.html", tags: ["ia", "inteligencia artificial", "python", "conversacional", "investigacion", "desarrollo"] },
+    { title: "PYCLEG", description: "Herramientas, utilidades y experimentación de software.", url: "proyectos/pycleg.html", tags: ["software", "javascript", "python", "herramientas", "web", "programacion"] },
+    { title: "Barbería Legnar", description: "Iniciativa comercial y presencia digital de barbería.", url: "proyectos/barberia-legnar.html", tags: ["barberia", "negocio", "servicios", "corte", "comercial"] }
   ];
 
-  function renderProjects(matches, query) {
-    if (!matches.length) {
-      projectResults.innerHTML = '<p class="search-empty">No encontramos proyectos relacionados con esa búsqueda.</p>';
-      return;
-    }
-    projectResults.innerHTML = matches.map((project) =>
-      '<a class="search-result" href="' + project.url + '">' +
-        '<span class="search-result-title">' + project.title + '</span>' +
-        '<span class="search-result-description">' + project.description + '</span>' +
-        '<span class="search-result-open">Ver información <span aria-hidden="true">→</span></span>' +
-      '</a>'
-    ).join("");
-  }
+  const normalize = (value) =>
+    value.toLocaleLowerCase("es").normalize("NFD").replace(/[\u0300-\u036f]/g, "");
 
-  function findProjects(query) {
-    const normalized = query.trim().toLocaleLowerCase("es");
-    if (!normalized) return projects;
+  const findMatches = (query) => {
+    const q = normalize(query.trim());
+    if (!q) return projects;
     return projects.filter((project) =>
-      project.title.toLocaleLowerCase("es").includes(normalized) ||
-      project.description.toLocaleLowerCase("es").includes(normalized) ||
-      project.tags.some((tag) => tag.includes(normalized))
+      normalize(project.title).includes(q) ||
+      normalize(project.description).includes(q) ||
+      project.tags.some((tag) => normalize(tag).includes(q))
     );
-  }
-
-  projectSearch.addEventListener("input", () => {
-    const query = projectSearch.value;
-    if (!query.trim()) {
-      projectResults.innerHTML = '<p class="search-hint">Escribe para buscar o explora todos los proyectos.</p>';
-      return;
-    }
-    renderProjects(findProjects(query), query);
-  });
-
-  projectSearch.addEventListener("keydown", (event) => {
-    if (event.key === "Enter") {
-      const firstResult = projectResults.querySelector(".search-result");
-      if (firstResult) window.location.href = firstResult.href;
-    }
-  });
-
-  projectSearch.addEventListener("focus", () => {
-    if (!projectSearch.value.trim()) {
-      renderProjects(projects, "");
-    }
-  });
-
-  projectSearch.addEventListener("blur", () => {
-    window.setTimeout(() => {
-      if (!projectSearch.value.trim()) {
-        projectResults.innerHTML = '<p class="search-hint">Escribe para buscar o explora todos los proyectos.</p>';
-      }
-    }, 140);
-  });
-}
-
-
-// Buscador del catálogo LPP: filtra proyectos por nombre, área o palabras clave.
-const projectSearch = document.getElementById("projectSearch");
-const projectResults = document.getElementById("projectResults");
-
-if (projectSearch && projectResults) {
-  const projects = [
-    { title: "ARCS IA", description: "Investigación y desarrollo de inteligencia artificial local.", url: "proyectos/arcs-ia.html", tags: ["ia", "inteligencia artificial", "python", "conversacional", "investigación", "desarrollo"] },
-    { title: "PYCLEG", description: "Herramientas, utilidades y experimentación de software.", url: "proyectos/pycleg.html", tags: ["software", "javascript", "python", "herramientas", "web", "programación"] },
-    { title: "Barbería Legnar", description: "Iniciativa comercial y presencia digital de barbería.", url: "proyectos/barberia-legnar.html", tags: ["barbería", "negocio", "servicios", "corte", "comercial"] }
-  ];
+  };
 
   const render = (matches) => {
     if (!matches.length) {
@@ -254,26 +197,10 @@ if (projectSearch && projectResults) {
     ).join("");
   };
 
-  const normalizeSearch = (value) =>
-    value.toLocaleLowerCase("es").normalize("NFD").replace(/[\u0300-\u036f]/g, "");
-
-  const findMatches = (query) => {
-    const q = normalizeSearch(query.trim());
-    if (!q) return projects;
-    return projects.filter((project) =>
-      normalizeSearch(project.title).includes(q) ||
-      normalizeSearch(project.description).includes(q) ||
-      project.tags.some((tag) => normalizeSearch(tag).includes(q))
-    );
-  };
-
   projectSearch.addEventListener("input", () => {
     const query = projectSearch.value;
-    if (!query.trim()) {
-      projectResults.innerHTML = '<p class="search-hint">Escribe para buscar o explora todos los proyectos.</p>';
-    } else {
-      render(findMatches(query));
-    }
+    if (query.trim()) render(findMatches(query));
+    else projectResults.innerHTML = '<p class="search-hint">Escribe para buscar o explora todos los proyectos.</p>';
   });
 
   projectSearch.addEventListener("keydown", (event) => {
