@@ -1,17 +1,12 @@
 // ===== LPP · Legnar Proyectos Privados =====
 
 // ============================================================
-// CONFIGURACIÓN DE CONTACTO (edita solo este bloque)
-// ------------------------------------------------------------
-// OPCIÓN 1 (recomendada): Formspree — crea una cuenta gratis en
-//   https://formspree.io , registra el formulario y pega tu ID.
-//   Queda algo como: formspreeId: "xldojkva"
-// OPCIÓN 2 (respaldo sin registro): pon tu correo en "email".
-//   Si formspreeId está vacío, se abre la app de correo del visitante.
+// CONFIGURACIÓN DE CONTACTO
+// Formspree: los mensajes del formulario llegan a tu correo.
 // ============================================================
 const CONTACTO = {
-  formspreeId: "", // pega aquí tu ID de Formspree
-  email: "",       // correo de respaldo (se usa solo si formspreeId está vacío)
+  formspreeId: "mppdalrj", // ID de tu formulario en Formspree
+  email: "",               // respaldo opcional (se ignora mientras haya ID)
 };
 
 // Selector de tema (guardado en el navegador)
@@ -83,10 +78,8 @@ if ("IntersectionObserver" in window) {
 }
 
 // ============================================================
-// FORMULARIO DE CONTACTO REAL
-// - Con Formspree configurado: envía y llega a tu correo.
-// - Sin Formspree pero con correo de respaldo: abre la app
-//   de correo del visitante con el mensaje ya escrito.
+// FORMULARIO DE CONTACTO
+// Envía el mensaje a tu correo a través de Formspree.
 // ============================================================
 const form = document.getElementById("contactForm");
 const formNote = document.getElementById("formNote");
