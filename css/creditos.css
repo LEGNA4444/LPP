@@ -1,0 +1,94 @@
+/* ===== CRÉDITOS LPP ===== */
+.creditos-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.credito-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 1.8rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+  transition: transform 0.25s, border-color 0.25s;
+}
+
+.credito-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--accent);
+}
+
+.credito-header {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.credito-nombre {
+  font-size: 1.4rem;
+  font-weight: 800;
+  background: var(--gradient);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.credito-titulo {
+  font-size: 0.82rem;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: var(--text-dim);
+}
+
+.credito-desc {
+  color: var(--text-dim);
+  font-size: 0.95rem;
+  line-height: 1.65;
+}
+
+.credito-roles {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.credito-tag {
+  font-size: 0.75rem;
+  padding: 0.2rem 0.7rem;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  color: var(--text-dim);
+  background: var(--bg);
+}
+
+.credito-firma {
+  font-family: monospace;
+  font-size: 0.9rem;
+  color: var(--accent-2);
+  margin-top: auto;
+  padding-top: 0.5rem;
+  border-top: 1px solid var(--border);
+}
+
+.credito-advertencia {
+  font-size: 0.8rem;
+  color: var(--danger, #e05252);
+  font-weight: 600;
+}
+
+.credito-otros {
+  opacity: 0.5;
+}
+
+.sobre-copy h2 {
+  margin-top: 0;
+}
+
+.sobre-copy p {
+  margin-bottom: 0.8rem;
+}
