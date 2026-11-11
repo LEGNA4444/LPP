@@ -254,13 +254,16 @@ if (projectSearch && projectResults) {
     ).join("");
   };
 
+  const normalizeSearch = (value) =>
+    value.toLocaleLowerCase("es").normalize("NFD").replace(/[\\u0300-\\u036f]/g, "");
+
   const findMatches = (query) => {
-    const q = query.trim().toLocaleLowerCase("es");
+    const q = normalizeSearch(query.trim());
     if (!q) return projects;
     return projects.filter((project) =>
-      project.title.toLocaleLowerCase("es").includes(q) ||
-      project.description.toLocaleLowerCase("es").includes(q) ||
-      project.tags.some((tag) => tag.includes(q))
+      normalizeSearch(project.title).includes(q) ||
+      normalizeSearch(project.description).includes(q) ||
+      project.tags.some((tag) => normalizeSearch(tag).includes(q))
     );
   };
 
