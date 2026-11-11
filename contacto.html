@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Contacta a LPP · Legnar Proyectos Privados para consultas, cotizaciones, opiniones y proyectos.">
+  <title>Contacto · LPP</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <script src="js/main.js" defer></script>
+</head>
+<body>
+<nav class="nav">
+  <a href="index.html" class="logo">L<span class="logo-accent">PP</span></a>
+  <div class="nav-right">
+    <div class="theme-picker" aria-label="Seleccionar tema">
+      <button class="theme-dot dot-oro active" data-theme="oro" aria-label="Tema dorado"></button>
+      <button class="theme-dot dot-esmeralda" data-theme="esmeralda" aria-label="Tema esmeralda"></button>
+      <button class="theme-dot dot-carmesi" data-theme="carmesi" aria-label="Tema carmesí"></button>
+      <button class="theme-dot dot-acero" data-theme="acero" aria-label="Tema azul acero"></button>
+    </div>
+    <button class="nav-toggle" id="navToggle" aria-label="Abrir menú" aria-expanded="false">☰</button>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html">LPP</a></li>
+      <li><a href="index.html#proyectos">Proyectos</a></li>
+      <li><a href="servicios.html">Servicios</a></li>
+      <li><a href="contacto.html" class="btn-nav">Contacto</a></li>
+    </ul>
+  </div>
+</nav>
+<main class="subpage-main">
+  <header class="subpage-heading">
+    <p class="hero-tag">Hablemos</p>
+    <h1>Contacto</h1>
+    <p>Cuéntanos qué necesitas, qué proyecto te interesa o qué podemos mejorar.</p>
+  </header>
+  <section class="section section-alt">
+    <form class="contact-form reveal" id="contactForm">
+      <div class="form-row">
+        <input type="text" name="nombre" placeholder="Tu nombre" autocomplete="name" required>
+        <input type="email" name="email" placeholder="Tu correo" autocomplete="email" required>
+      </div>
+      <div class="form-row">
+        <input type="tel" name="telefono" placeholder="Teléfono (opcional)" autocomplete="tel">
+        <select name="solicitud" aria-label="Tipo de solicitud" required>
+          <option value="" disabled selected>¿En qué puedo ayudarte?</option>
+          <option value="informacion">Quiero más información</option>
+          <option value="pregunta">Tengo una pregunta</option>
+          <option value="cotizacion">Quiero una cotización</option>
+          <option value="compra">Quiero comprar o contratar un proyecto</option>
+          <option value="opinion">Quiero dejar una opinión</option>
+          <option value="otro">Otra solicitud</option>
+        </select>
+      </div>
+      <div class="form-row">
+        <select name="proyecto" aria-label="Proyecto de interés">
+          <option value="" selected>¿Qué proyecto te interesa? (opcional)</option>
+          <option value="ARCS IA">ARCS IA</option>
+          <option value="Barbería Legnar">Barbería Legnar</option>
+          <option value="PYCLEG">PYCLEG</option>
+          <option value="LPP">LPP / Desarrollo web</option>
+          <option value="personalizado">Un proyecto personalizado</option>
+          <option value="no-se">Todavía no lo sé</option>
+        </select>
+        <select name="calificacion" aria-label="Calificación de la página">
+          <option value="" selected>Califica esta página (opcional)</option>
+          <option value="5">5 — Excelente</option>
+          <option value="4">4 — Muy buena</option>
+          <option value="3">3 — Buena</option>
+          <option value="2">2 — Puede mejorar</option>
+          <option value="1">1 — Necesita mejoras</option>
+        </select>
+      </div>
+      <textarea name="mensaje" rows="5" placeholder="Escribe tu pregunta, opinión o los detalles del proyecto que te interesa..." required></textarea>
+      <button type="submit" class="btn btn-primary">Enviar mensaje</button>
+      <p class="form-note" id="formNote" aria-live="polite"></p>
+    </form>
+  </section>
+</main>
+<footer class="footer">
+  <p>© 2026 <strong>LPP · Legnar Proyectos Privados</strong></p>
+  <div class="footer-links">
+    <a href="index.html">Inicio</a>
+    <a href="contacto.html">Contacto</a>
+    
+  </div>
+</footer>
+</body>
+</html>
