@@ -16,6 +16,7 @@
   initial-value: rgba(212, 160, 23, 0.35);
 }
 :root, :root[data-theme="oro"] {
+  --danger: #e05252;
   --bg: #0b0e14; --bg-alt: #10141d; --card: #151a26; --border: #232a3a;
   --text: #e6e9f0; --text-dim: #9aa3b5;
   --accent: #d4a017; --accent-2: #f0c040;
@@ -330,40 +331,3 @@ select option { background: var(--bg); color: var(--text); }
 }
 
 
-/* ===== CATÁLOGO DE PROYECTOS LPP ===== */
-.project-search { max-width: 780px; margin: 0 auto; }
-.project-search input {
-  width: 100%; background: var(--card); border: 1px solid var(--border);
-  border-radius: 14px; padding: 1.1rem 1.25rem; color: var(--text);
-  font: inherit; font-size: 1rem;
-  transition: border-color var(--theme-transition) ease, background-color var(--theme-transition) ease, color var(--theme-transition) ease, box-shadow .2s ease;
-}
-.project-search input:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-glow); }
-.search-results { display: grid; gap: .75rem; margin-top: 1rem; }
-.search-hint, .search-empty { color: var(--text-dim); text-align: center; padding: 1.1rem; }
-.search-result {
-  display: grid; grid-template-columns: 1fr auto; gap: .25rem 1rem;
-  padding: 1.15rem 1.25rem; border: 1px solid var(--border);
-  border-radius: 12px; background: var(--card); color: var(--text);
-  text-decoration: none; transition: border-color .25s ease, transform .25s ease, background-color var(--theme-transition) ease;
-}
-.search-result:hover { border-color: var(--accent); transform: translateY(-2px); }
-.search-result-title { font-weight: 700; }
-.search-result-description { color: var(--text-dim); font-size: .92rem; }
-.search-result-open { grid-column: 2; grid-row: 1 / span 2; align-self: center; color: var(--accent-2); font-size: .9rem; font-weight: 600; }
-.identity-copy { max-width: 850px; color: var(--text-dim); font-size: 1.05rem; }
-.identity-copy p + p { margin-top: 1rem; }
-.compact-section { text-align: center; }
-.subpage-main { padding-top: 6rem; min-height: 70vh; }
-.subpage-heading { max-width: 850px; margin: 0 auto; padding: 5rem 6vw 2rem; text-align: center; }
-.subpage-heading h1 { font-size: clamp(2.2rem, 7vw, 3.8rem); margin: .6rem 0 1rem; }
-.subpage-heading > p:last-child { color: var(--text-dim); font-size: 1.05rem; }
-.project-detail { max-width: 900px; }
-.project-detail > p, .service-disclaimer { color: var(--text-dim); margin: 1rem 0 2rem; }
-.service-disclaimer { text-align: center; max-width: 800px; margin: 2rem auto; }
-.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
-@media (max-width: 600px) {
-  .search-result { grid-template-columns: 1fr; }
-  .search-result-open { grid-column: 1; grid-row: auto; }
-  .subpage-heading { padding-top: 3.5rem; }
-}
