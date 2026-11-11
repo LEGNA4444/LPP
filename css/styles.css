@@ -70,12 +70,17 @@ body {
   transition: background-color var(--theme-transition) ease, border-color var(--theme-transition) ease;
 }
 .logo {
+  display: inline-flex;
+  align-items: center;
+  gap: .55rem;
   font-size: 1.6rem;
   font-weight: 800;
   text-decoration: none;
   color: var(--text);
   letter-spacing: 1px;
 }
+.logo:focus-visible { outline: 2px solid var(--accent); outline-offset: 5px; border-radius: 4px; }
+.logo-img { display: block; width: auto; height: 40px; max-width: min(42vw, 190px); object-fit: contain; }
 .logo-accent, .gradient-text {
   background: var(--gradient);
   -webkit-background-clip: text;
