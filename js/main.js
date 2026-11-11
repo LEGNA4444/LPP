@@ -224,3 +224,34 @@ if (projectSearch && projectResults) {
     }, 140);
   });
 }
+// ── Easter egg del logo: 8 clics en menos de 2 segundos ───────
+(function logoEasterEgg() {
+  const logo = document.querySelector(".logo-trigger");
+  if (!logo) return;
+
+  let taps = 0;
+  let timer = null;
+  const normalDestination = logo.href;
+  const script = document.querySelector('script[src$="main.js"]');
+  const baseUrl = script ? new URL("../", script.src) : new URL("./", window.location.href);
+  const secretDestination = new URL("inf/", baseUrl).href;
+
+  logo.addEventListener("click", (event) => {
+    if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+    event.preventDefault();
+
+    taps += 1;
+    if (timer) window.clearTimeout(timer);
+
+    if (taps >= 8) {
+      taps = 0;
+      window.location.href = secretDestination;
+      return;
+    }
+
+    timer = window.setTimeout(() => {
+      taps = 0;
+      window.location.href = normalDestination;
+    }, 2000);
+  });
+})();
