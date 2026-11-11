@@ -8,13 +8,19 @@
   <title>LPP · Legnar Proyectos Privados</title>
   <link rel="stylesheet" href="css/styles.css">
   <script src="js/main.js" defer></script>
+  <script>
+    try {
+      var t = localStorage.getItem("lpp-theme");
+      if (t) document.documentElement.setAttribute("data-theme", t);
+    } catch (_) {}
+  </script>
 </head>
 <body>
   <nav class="nav">
     <a href="index.html" class="logo" aria-label="LPP, inicio">L<span class="logo-accent">PP</span></a>
     <div class="nav-right">
       <div class="theme-picker" aria-label="Seleccionar tema">
-        <button class="theme-dot dot-oro active" data-theme="oro" aria-label="Tema dorado"></button>
+        <button class="theme-dot dot-oro" data-theme="oro" aria-label="Tema dorado"></button>
         <button class="theme-dot dot-esmeralda" data-theme="esmeralda" aria-label="Tema esmeralda"></button>
         <button class="theme-dot dot-carmesi" data-theme="carmesi" aria-label="Tema carmesí"></button>
         <button class="theme-dot dot-acero" data-theme="acero" aria-label="Tema azul acero"></button>
