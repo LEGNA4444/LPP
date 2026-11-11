@@ -5,11 +5,11 @@
 // Formspree: los mensajes del formulario llegan a tu correo.
 // ============================================================
 const CONTACTO = {
-  formspreeId: "mppdalrj", // ID de tu formulario en Formspree
-  email: "",               // respaldo opcional (se ignora mientras haya ID)
+  formspreeId: "mppdalrj",
+  email: "",
 };
 
-// Selector de tema (guardado en el navegador)
+// ── Selector de tema ─────────────────────────────────────────
 const root = document.documentElement;
 const dots = document.querySelectorAll(".theme-dot");
 
@@ -18,29 +18,25 @@ function setTheme(theme) {
   dots.forEach((dot) => {
     dot.classList.toggle("active", dot.dataset.theme === theme);
   });
-
   try {
     localStorage.setItem("lpp-theme", theme);
-  } catch (error) {
-    // El almacenamiento puede estar bloqueado; la página sigue funcionando.
-  }
+  } catch (_) {}
 }
 
 dots.forEach((dot) => {
   dot.addEventListener("click", () => setTheme(dot.dataset.theme));
 });
 
-// Restaurar el tema guardado al recargar.
-try {
-  const savedTheme = localStorage.getItem("lpp-theme");
-  if (savedTheme) setTheme(savedTheme);
-} catch (error) {
-  // Se conserva el tema predeterminado.
-}
+(function syncDot() {
+  const current = root.getAttribute("data-theme") || "oro";
+  dots.forEach((dot) => {
+    dot.classList.toggle("active", dot.dataset.theme === current);
+  });
+})();
 
-// Menú móvil.
+// ── Menú móvil ───────────────────────────────────────────────
 const navToggle = document.getElementById("navToggle");
-const navLinks = document.getElementById("navLinks");
+const navLinks  = document.getElementById("navLinks");
 
 if (navToggle && navLinks) {
   navToggle.addEventListener("click", () => {
@@ -56,7 +52,7 @@ if (navToggle && navLinks) {
   });
 }
 
-// Animación de aparición al desplazarse.
+// ── Animación reveal al desplazarse ──────────────────────────
 if ("IntersectionObserver" in window) {
   const observer = new IntersectionObserver((entries, currentObserver) => {
     entries.forEach((entry) => {
@@ -67,21 +63,15 @@ if ("IntersectionObserver" in window) {
     });
   }, { threshold: 0.12 });
 
-  document.querySelectorAll(".reveal").forEach((element) => {
-    observer.observe(element);
-  });
+  document.querySelectorAll(".reveal").forEach((el) => observer.observe(el));
 } else {
-  // Evita dejar contenido invisible en navegadores antiguos.
-  document.querySelectorAll(".reveal").forEach((element) => {
-    element.classList.add("visible");
-  });
+  document.querySelectorAll(".reveal").forEach((el) => el.classList.add("visible"));
 }
 
 // ============================================================
 // FORMULARIO DE CONTACTO
-// Envía el mensaje a tu correo a través de Formspree.
 // ============================================================
-const form = document.getElementById("contactForm");
+const form     = document.getElementById("contactForm");
 const formNote = document.getElementById("formNote");
 
 function setNote(text, isError) {
@@ -93,9 +83,9 @@ function setNote(text, isError) {
 async function enviarConFormspree(datos) {
   const endpoint = "https://formspree.io/f/" + CONTACTO.formspreeId;
   const respuesta = await fetch(endpoint, {
-    method: "POST",
+    method:  "POST",
     headers: { "Accept": "application/json" },
-    body: datos,
+    body:    datos,
   });
 
   if (respuesta.ok) {
@@ -113,8 +103,8 @@ async function enviarConFormspree(datos) {
 }
 
 function enviarPorCorreo(datos) {
-  const nombre = datos.get("nombre") || "";
-  const email = datos.get("email") || "";
+  const nombre  = datos.get("nombre")  || "";
+  const email   = datos.get("email")   || "";
   const mensaje = datos.get("mensaje") || "";
 
   const asunto = encodeURIComponent("Contacto desde LPP — " + nombre);
@@ -131,80 +121,92 @@ if (form && formNote) {
   form.addEventListener("submit", async (event) => {
     event.preventDefault();
 
-    const datos = new FormData(form);
+    const datos  = new FormData(form);
+    const boton  = form.querySelector("button[type=submit]");
+    const txtOri = boton ? boton.textContent : null;
 
     if (CONTACTO.formspreeId) {
-      const boton = form.querySelector("button[type=submit]");
-      const textoOriginal = boton ? boton.textContent : null;
-      if (boton) { boton.disabled = true; boton.textContent = "Enviando..."; }
-
+      if (boton) { boton.disabled = true; boton.textContent = "Enviando…"; }
       try {
         await enviarConFormspree(datos);
-      } catch (error) {
-        // Sin conexión u otro fallo de red.
+      } catch (_) {
         setNote("No se pudo enviar el mensaje. Revisa tu conexión e intenta de nuevo.", true);
       } finally {
-        if (boton) {
-          boton.disabled = false;
-          if (textoOriginal) boton.textContent = textoOriginal;
-        }
+        if (boton) { boton.disabled = false; if (txtOri) boton.textContent = txtOri; }
       }
     } else if (CONTACTO.email) {
       enviarPorCorreo(datos);
     } else {
-      // Sin configurar: no le mentimos al visitante.
       setNote("El envío de mensajes aún no está configurado. Escríbeme por GitHub.", true);
     }
   });
 }
+
 // ============================================================
 // BUSCADOR DEL CATÁLOGO LPP
-// Filtra por nombre, descripción y etiquetas; ignora mayúsculas y acentos.
-const projectSearch = document.getElementById("projectSearch");
+// ============================================================
+const projectSearch  = document.getElementById("projectSearch");
 const projectResults = document.getElementById("projectResults");
 
 if (projectSearch && projectResults) {
   const projects = [
-    { title: "ARCS IA", description: "Investigación y desarrollo de inteligencia artificial local.", url: "proyectos/arcs-ia.html", tags: ["ia", "inteligencia artificial", "python", "conversacional", "investigacion", "desarrollo"] },
-    { title: "PYCLEG", description: "Herramientas, utilidades y experimentación de software.", url: "proyectos/pycleg.html", tags: ["software", "javascript", "python", "herramientas", "web", "programacion"] },
-    { title: "Barbería Legnar", description: "Iniciativa comercial y presencia digital de barbería.", url: "proyectos/barberia-legnar.html", tags: ["barberia", "negocio", "servicios", "corte", "comercial"] }
+    {
+      title:       "ARCS IA",
+      description: "Investigación y desarrollo de inteligencia artificial local.",
+      url:         "proyectos/arcs-ia.html",
+      tags:        ["ia", "inteligencia artificial", "python", "conversacional", "investigacion", "desarrollo"],
+    },
+    {
+      title:       "PYCLEG",
+      description: "Herramientas, utilidades y experimentación de software.",
+      url:         "proyectos/pycleg.html",
+      tags:        ["software", "javascript", "python", "herramientas", "web", "programacion"],
+    },
+    {
+      title:       "Barbería Legnar",
+      description: "Iniciativa comercial y presencia digital de barbería.",
+      url:         "proyectos/barberia-legnar.html",
+      tags:        ["barberia", "negocio", "servicios", "corte", "comercial"],
+    },
   ];
 
-  const normalize = (value) =>
-    value.toLocaleLowerCase("es").normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+  const normalize = (v) =>
+    v.toLocaleLowerCase("es").normalize("NFD").replace(/[\u0300-\u036f]/g, "");
 
   const findMatches = (query) => {
     const q = normalize(query.trim());
     if (!q) return projects;
-    return projects.filter((project) =>
-      normalize(project.title).includes(q) ||
-      normalize(project.description).includes(q) ||
-      project.tags.some((tag) => normalize(tag).includes(q))
+    return projects.filter((p) =>
+      normalize(p.title).includes(q) ||
+      normalize(p.description).includes(q) ||
+      p.tags.some((t) => normalize(t).includes(q))
     );
   };
 
   const render = (matches) => {
     if (!matches.length) {
-      projectResults.innerHTML = '<p class="search-empty">No encontramos proyectos relacionados con esa búsqueda.</p>';
+      projectResults.innerHTML =
+        '<p class="search-empty">No encontramos proyectos relacionados con esa búsqueda.</p>';
       return;
     }
-    projectResults.innerHTML = matches.map((project) =>
-      '<a class="search-result" href="' + project.url + '">' +
-        '<span class="search-result-title">' + project.title + '</span>' +
-        '<span class="search-result-description">' + project.description + '</span>' +
+    projectResults.innerHTML = matches.map((p) =>
+      '<a class="search-result" href="' + p.url + '">' +
+        '<span class="search-result-title">'       + p.title       + '</span>' +
+        '<span class="search-result-description">' + p.description + '</span>' +
         '<span class="search-result-open">Ver información <span aria-hidden="true">→</span></span>' +
       '</a>'
     ).join("");
   };
 
   projectSearch.addEventListener("input", () => {
-    const query = projectSearch.value;
-    if (query.trim()) render(findMatches(query));
-    else projectResults.innerHTML = '<p class="search-hint">Escribe para buscar o explora todos los proyectos.</p>';
+    const q = projectSearch.value;
+    if (q.trim()) render(findMatches(q));
+    else projectResults.innerHTML =
+      '<p class="search-hint">Escribe para buscar o explora todos los proyectos.</p>';
   });
 
-  projectSearch.addEventListener("keydown", (event) => {
-    if (event.key === "Enter") {
+  projectSearch.addEventListener("keydown", (e) => {
+    if (e.key === "Enter") {
       const first = projectResults.querySelector(".search-result");
       if (first) window.location.href = first.href;
     }
@@ -216,9 +218,9 @@ if (projectSearch && projectResults) {
 
   projectSearch.addEventListener("blur", () => {
     window.setTimeout(() => {
-      if (!projectSearch.value.trim()) {
-        projectResults.innerHTML = '<p class="search-hint">Escribe para buscar o explora todos los proyectos.</p>';
-      }
+      if (!projectSearch.value.trim())
+        projectResults.innerHTML =
+          '<p class="search-hint">Escribe para buscar o explora todos los proyectos.</p>';
     }, 140);
   });
 }

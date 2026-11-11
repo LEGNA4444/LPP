@@ -331,3 +331,63 @@ select option { background: var(--bg); color: var(--text); }
 }
 
 
+
+/* ===== LABELS FLOTANTES (formulario de contacto) ===== */
+.field {
+  position: relative;
+}
+
+.field label {
+  position: absolute;
+  left: 1.1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1rem;
+  color: var(--text-dim);
+  pointer-events: none;
+  transition: top 0.18s ease, font-size 0.18s ease, color 0.18s ease;
+  background: transparent;
+  padding: 0 0.2rem;
+  line-height: 1;
+}
+
+.field input:focus + label,
+.field input:not(:placeholder-shown) + label,
+.field select:focus + label,
+.field select:not([value=""]) + label,
+.field textarea:focus + label,
+.field textarea:not(:placeholder-shown) + label {
+  top: 0;
+  font-size: 0.75rem;
+  color: var(--accent);
+  background: var(--bg);
+}
+
+.field--textarea label {
+  top: 1.1rem;
+  transform: none;
+}
+
+.field--textarea textarea {
+  padding-top: 1.4rem;
+}
+
+.field--textarea input:focus + label,
+.field--textarea textarea:focus + label,
+.field--textarea textarea:not(:placeholder-shown) + label {
+  top: 0.3rem;
+  font-size: 0.75rem;
+  color: var(--accent);
+  background: var(--bg);
+}
+
+.field select {
+  padding-top: 1.3rem;
+  padding-bottom: 0.5rem;
+}
+
+.field input,
+.field textarea {
+  padding-top: 1.3rem;
+  padding-bottom: 0.5rem;
+}
