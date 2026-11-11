@@ -142,6 +142,17 @@
         <input type="text" name="nombre" placeholder="Tu nombre" autocomplete="name" required>
         <input type="email" name="email" placeholder="Tu correo" autocomplete="email" required>
       </div>
+      <div class="form-row">
+        <select name="tipo" required>
+          <option value="" disabled selected>¿Qué necesitas?</option>
+          <option value="web">Desarrollo web</option>
+          <option value="ia">Solución con IA</option>
+          <option value="proyecto">Proyecto personalizado</option>
+          <option value="barberia">Barbería Legnar</option>
+          <option value="otro">Otra cosa</option>
+        </select>
+        <input type="tel" name="telefono" placeholder="Teléfono (opcional)" autocomplete="tel">
+      </div>
       <textarea name="mensaje" rows="5" placeholder="Cuéntame sobre tu proyecto..." required></textarea>
       <button type="submit" class="btn btn-primary">Enviar mensaje</button>
       <p class="form-note" id="formNote" aria-live="polite"></p>
