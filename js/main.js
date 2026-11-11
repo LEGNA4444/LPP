@@ -230,6 +230,7 @@ if (projectSearch && projectResults) {
   if (!logo) return;
 
   let taps = 0;
+  let startedAt = 0;
   let timer = null;
   const normalDestination = logo.href;
   const script = document.querySelector('script[src$="main.js"]');
@@ -240,18 +241,28 @@ if (projectSearch && projectResults) {
     if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
     event.preventDefault();
 
-    taps += 1;
-    if (timer) window.clearTimeout(timer);
+    const now = Date.now();
 
-    if (taps >= 8) {
+    // La secuencia completa debe ocurrir dentro de los mismos 2 segundos.
+    if (!startedAt || now - startedAt >= 2000) {
       taps = 0;
-      window.location.href = secretDestination;
-      return;
+      startedAt = now;
+      if (timer) window.clearTimeout(timer);
+      timer = window.setTimeout(() => {
+        taps = 0;
+        startedAt = 0;
+        timer = null;
+        window.location.href = normalDestination;
+      }, 2000);
     }
 
-    timer = window.setTimeout(() => {
+    taps += 1;
+
+    if (taps >= 8 && now - startedAt < 2000) {
+      if (timer) window.clearTimeout(timer);
       taps = 0;
-      window.location.href = normalDestination;
-    }, 2000);
+      startedAt = 0;
+      window.location.href = secretDestination;
+    }
   });
 })();
