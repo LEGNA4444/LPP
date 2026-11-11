@@ -3,18 +3,17 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="LPP · Legnar Proyectos Privados. Organización independiente para desarrollar, coordinar y dar estructura a proyectos propios y soluciones digitales.">
+  <meta name="theme-color" content="#0b0e14">
   <title>LPP · Legnar Proyectos Privados</title>
-  <meta name="description" content="LPP (Legnar Proyectos Privados): ecosistema de proyectos y servicios liderado por Legnar. Desarrollo de IA, software y soluciones digitales.">
   <link rel="stylesheet" href="css/styles.css">
   <script src="js/main.js" defer></script>
 </head>
 <body>
-
-  <!-- NAV -->
   <nav class="nav">
-    <a href="#inicio" class="logo">L<span class="logo-accent">PP</span></a>
+    <a href="index.html" class="logo" aria-label="LPP, inicio">L<span class="logo-accent">PP</span></a>
     <div class="nav-right">
-      <div class="theme-picker" title="Elige el estilo del día">
+      <div class="theme-picker" aria-label="Seleccionar tema">
         <button class="theme-dot dot-oro active" data-theme="oro" aria-label="Tema dorado"></button>
         <button class="theme-dot dot-esmeralda" data-theme="esmeralda" aria-label="Tema esmeralda"></button>
         <button class="theme-dot dot-carmesi" data-theme="carmesi" aria-label="Tema carmesí"></button>
@@ -23,170 +22,88 @@
       <button class="nav-toggle" id="navToggle" aria-label="Abrir menú" aria-expanded="false">☰</button>
       <ul class="nav-links" id="navLinks">
         <li><a href="#inicio">Inicio</a></li>
-        <li><a href="#que-es">¿Qué es LPP?</a></li>
-        <li><a href="#ecosistema">Ecosistema</a></li>
-        <li><a href="#servicios">Servicios</a></li>
-        <li><a href="#contacto" class="btn-nav">Contacto</a></li>
+        <li><a href="#identidad">LPP</a></li>
+        <li><a href="#estructura">Estructura</a></li>
+        <li><a href="servicios.html">Servicios</a></li>
+        <li><a href="contacto.html" class="btn-nav">Contacto</a></li>
       </ul>
     </div>
   </nav>
 
-  <!-- HERO -->
   <header class="hero" id="inicio">
     <div class="hero-glow"></div>
     <div class="hero-content">
       <p class="hero-tag">Legnar Proyectos Privados</p>
-      <h1>Un ecosistema de <span class="gradient-text">proyectos e ideas</span> hecho realidad.</h1>
-      <p class="hero-sub">
-        LPP es el hub oficial de los proyectos de Legnar: inteligencia artificial,
-        desarrollo web y soluciones digitales, todo en un solo lugar.
-      </p>
+      <h1>Ideas distintas. <span class="gradient-text">Una estructura común.</span></h1>
+      <p class="hero-sub">LPP es una organización independiente que reúne, desarrolla y coordina proyectos propios y soluciones digitales bajo una misma dirección.</p>
       <div class="hero-cta">
-        <a href="#ecosistema" class="btn btn-primary">Ver proyectos</a>
-        <a href="#contacto" class="btn btn-ghost">Trabajemos juntos</a>
+        <a href="#proyectos" class="btn btn-primary">Explorar proyectos</a>
+        <a href="contacto.html" class="btn btn-ghost">Contactar</a>
       </div>
     </div>
   </header>
 
-  <!-- QUÉ ES LPP -->
-  <section class="section" id="que-es">
-    <h2 class="section-title">¿Qué es <span class="gradient-text">LPP</span>?</h2>
-    <div class="grid-2">
-      <div class="card reveal">
-        <h3>🎯 Nuestra misión</h3>
-        <p>
-          LPP nació como un espacio privado donde cada idea se convierte en proyecto.
-          No nos especializamos en una sola cosa: <strong>diversificamos</strong>,
-          exploramos y construimos soluciones con propósito, metas claras
-          y atención al detalle.
-        </p>
+  <main>
+    <section class="section" id="identidad">
+      <h2 class="section-title">¿Qué es <span class="gradient-text">LPP</span>?</h2>
+      <div class="identity-copy">
+        <p>LPP significa <strong>Legnar Proyectos Privados</strong>. Es el espacio desde el que se organizan iniciativas con objetivos distintos: investigación y desarrollo, herramientas digitales, actividades comerciales y proyectos personalizados.</p>
+        <p>No todos los proyectos de LPP son productos a la venta ni todos funcionan de la misma manera. Cada iniciativa conserva su propósito, su identidad y su propio ritmo de desarrollo, mientras comparte una estructura de coordinación.</p>
       </div>
-      <div class="card reveal">
-        <h3>🧠 Quién está detrás</h3>
-        <p>
-          LPP está liderado por <strong>Legnar</strong>, con la dirección de un equipo
-          que acompaña cada proyecto de principio a fin. Compromiso, discreción
-          y visión a futuro: lo privado también puede ser profesional y de alto nivel.
-        </p>
-      </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- ECOSISTEMA -->
-  <section class="section section-alt" id="ecosistema">
-    <h2 class="section-title">El <span class="gradient-text">ecosistema</span></h2>
-    <p class="section-sub">Los proyectos que forman parte de LPP.</p>
-    <div class="grid-3">
-      <article class="project-card reveal">
-        <div class="project-icon">🤖</div>
-        <h3>ARCS IA</h3>
-        <p class="project-tag">Inteligencia Artificial</p>
-        <p>
-          Arquitectura Responsable de Control y Sistemas: una IA propia, entrenada
-          en texto y documentos, con personalidad estable y enfoque diversificado.
-          Python + interfaz web.
-        </p>
-        <a href="https://github.com/LEGNA4444/ARCS-IA" target="_blank" rel="noopener noreferrer" class="project-link">Ver en GitHub →</a>
-      </article>
-      <article class="project-card reveal">
-        <div class="project-icon">✂️</div>
-        <h3>Barbería Legnar</h3>
-        <p class="project-tag">Negocio · Web</p>
-        <p>
-          Presencia digital de la barbería Legnar: sitio con estilo, información
-          de servicios y contacto directo para clientes.
-        </p>
-        <a href="https://github.com/LEGNA4444/BARBER-SHOP.LEGNAR.LPP" target="_blank" rel="noopener noreferrer" class="project-link">Ver en GitHub →</a>
-      </article>
-      <article class="project-card reveal">
-        <div class="project-icon">💻</div>
-        <h3>PYCLEG</h3>
-        <p class="project-tag">Desarrollo de software</p>
-        <p>
-          Proyecto de desarrollo en JavaScript y Python: experimentos,
-          utilidades y herramientas del ecosistema LPP.
-        </p>
-        <a href="https://github.com/LEGNA4444/PYCLEG" target="_blank" rel="noopener noreferrer" class="project-link">Ver en GitHub →</a>
-      </article>
-    </div>
-  </section>
+    <section class="section section-alt" id="estructura">
+      <h2 class="section-title">Cómo se organiza</h2>
+      <p class="section-sub">Una estructura flexible para proyectos que no tienen por qué parecerse entre sí.</p>
+      <div class="grid-2">
+        <article class="card reveal">
+          <h3>Dirección y coordinación</h3>
+          <p>LPP funciona como núcleo de organización: define prioridades, conecta recursos y da seguimiento a cada iniciativa.</p>
+        </article>
+        <article class="card reveal">
+          <h3>Desarrollo y mejora</h3>
+          <p>Las ideas se convierten en trabajo concreto mediante diseño, programación, pruebas y ajustes. Las decisiones se revisan según los resultados, no solo por apariencia.</p>
+        </article>
+        <article class="card reveal">
+          <h3>Custodia del trabajo</h3>
+          <p>La documentación, el código y los materiales de cada proyecto se gestionan de acuerdo con su alcance y las condiciones de colaboración correspondientes.</p>
+        </article>
+        <article class="card reveal">
+          <h3>Iniciativas independientes</h3>
+          <p>Un proyecto puede ser experimental, comercial o de servicio. Su presencia en el ecosistema no significa que todos sus recursos o componentes sean públicos.</p>
+        </article>
+      </div>
+    </section>
 
-  <!-- SERVICIOS -->
-  <section class="section" id="servicios">
-    <h2 class="section-title"><span class="gradient-text">Servicios</span></h2>
-    <div class="grid-3">
-      <div class="card service reveal">
-        <div class="service-icon">🌐</div>
-        <h3>Desarrollo web</h3>
-        <p>Sitios modernos, responsivos y a tu medida para dar a tu negocio una imagen oficial.</p>
+    <section class="section" id="proyectos">
+      <h2 class="section-title">Explora el <span class="gradient-text">ecosistema</span></h2>
+      <p class="section-sub">Busca por nombre, área o palabra clave. Selecciona un resultado para conocer cada proyecto dentro de LPP.</p>
+      <div class="project-search">
+        <label class="sr-only" for="projectSearch">Buscar proyectos</label>
+        <input id="projectSearch" type="search" placeholder="Ej. ARCS, inteligencia artificial, web..." autocomplete="off">
+        <div id="projectResults" class="search-results" aria-live="polite">
+          <p class="search-hint">Escribe para buscar o explora todos los proyectos.</p>
+        </div>
       </div>
-      <div class="card service reveal">
-        <div class="service-icon">🧩</div>
-        <h3>Proyectos personalizados</h3>
-        <p>¿Tienes una idea? La analizamos, definimos metas y limitaciones, y la construimos contigo.</p>
-      </div>
-      <div class="card service reveal">
-        <div class="service-icon">🤖</div>
-        <h3>Soluciones con IA</h3>
-        <p>Experiencia práctica entrenando y desarrollando IA propia aplicada a necesidades reales.</p>
-      </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- CONTACTO -->
-  <section class="section section-alt" id="contacto">
-    <h2 class="section-title">¿Trabajamos <span class="gradient-text">juntos</span>?</h2>
-    <p class="section-sub">Cuéntame tu idea y conversemos.</p>
-    <form class="contact-form reveal" id="contactForm">
-      <div class="form-row">
-        <input type="text" name="nombre" placeholder="Tu nombre" autocomplete="name" required>
-        <input type="email" name="email" placeholder="Tu correo" autocomplete="email" required>
+    <section class="section section-alt compact-section">
+      <h2 class="section-title">¿Tienes una idea?</h2>
+      <p class="section-sub">Podemos revisar el alcance, las necesidades y la viabilidad antes de proponer una solución.</p>
+      <div class="hero-cta">
+        <a href="servicios.html" class="btn btn-primary">Conocer servicios</a>
+        <a href="contacto.html" class="btn btn-ghost">Enviar una consulta</a>
       </div>
-      <div class="form-row">
-        <input type="tel" name="telefono" placeholder="Teléfono (opcional)" autocomplete="tel">
-        <select name="solicitud" aria-label="Tipo de solicitud" required>
-          <option value="" disabled selected>¿En qué puedo ayudarte?</option>
-          <option value="informacion">Quiero más información</option>
-          <option value="pregunta">Tengo una pregunta</option>
-          <option value="cotizacion">Quiero una cotización</option>
-          <option value="compra">Quiero comprar o contratar un proyecto</option>
-          <option value="opinion">Quiero dejar una opinión</option>
-          <option value="otro">Otra solicitud</option>
-        </select>
-      </div>
-      <div class="form-row">
-        <select name="proyecto" aria-label="Proyecto de interés">
-          <option value="" selected>¿Qué proyecto te interesa? (opcional)</option>
-          <option value="ARCS IA">ARCS IA</option>
-          <option value="Barbería Legnar">Barbería Legnar</option>
-          <option value="PYCLEG">PYCLEG</option>
-          <option value="LPP">LPP / Desarrollo web</option>
-          <option value="personalizado">Un proyecto personalizado</option>
-          <option value="no-se">Todavía no lo sé</option>
-        </select>
-        <select name="calificacion" aria-label="Calificación de la página">
-          <option value="" selected>Califica esta página (opcional)</option>
-          <option value="5">5 — Excelente</option>
-          <option value="4">4 — Muy buena</option>
-          <option value="3">3 — Buena</option>
-          <option value="2">2 — Puede mejorar</option>
-          <option value="1">1 — Necesita mejoras</option>
-        </select>
-      </div>
-      <textarea name="mensaje" rows="5" placeholder="Escribe tu pregunta, opinión o los detalles del proyecto que te interesa..." required></textarea>
-      <button type="submit" class="btn btn-primary">Enviar mensaje</button>
-      <p class="form-note" id="formNote" aria-live="polite"></p>
-    </form>
-  </section>
+    </section>
+  </main>
 
-  <!-- FOOTER -->
   <footer class="footer">
     <p>© 2026 <strong>LPP · Legnar Proyectos Privados</strong></p>
     <div class="footer-links">
+      <a href="contacto.html">Contacto</a>
       <a href="https://github.com/LEGNA4444" target="_blank" rel="noopener noreferrer">GitHub</a>
       <a href="#inicio">Volver arriba ↑</a>
     </div>
   </footer>
-
 </body>
 </html>
