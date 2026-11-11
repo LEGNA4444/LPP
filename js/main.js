@@ -255,7 +255,7 @@ if (projectSearch && projectResults) {
   };
 
   const normalizeSearch = (value) =>
-    value.toLocaleLowerCase("es").normalize("NFD").replace(/[\\u0300-\\u036f]/g, "");
+    value.toLocaleLowerCase("es").normalize("NFD").replace(/[\u0300-\u036f]/g, "");
 
   const findMatches = (query) => {
     const q = normalizeSearch(query.trim());
