@@ -396,3 +396,29 @@ select option { background: var(--bg); color: var(--text); }
   padding-top: 1.3rem;
   padding-bottom: 0.5rem;
 }
+
+
+/* ===== DESCRIPCIONES DEL EQUIPO ===== */
+.descripcion-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 1.5rem;
+  margin-top: 1.5rem;
+  transition:
+    transform 0.25s ease,
+    border-color var(--theme-transition) ease,
+    background-color var(--theme-transition) ease;
+}
+.descripcion-card:hover {
+  transform: translateY(-3px);
+  border-color: var(--accent);
+}
+.descripcion-card h3 {
+  color: var(--accent-2);
+  margin-bottom: 0.7rem;
+  font-size: 1.2rem;
+}
+.descripcion-card p {
+  color: var(--text-dim);
+}
